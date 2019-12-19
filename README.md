@@ -1,6 +1,12 @@
 # Ffmeg Http Server
 Using nestjs, Express and ffmpeg
 
+## Docker image : 
+https://hub.docker.com/r/aifedespaix/ffmpeg-http-server
+```bash
+docker pull aifedespaix/ffmpeg-http-server
+```
+
 ## How to use it
 ### 1 ) Fork Project
 ```bash
@@ -38,6 +44,18 @@ request(app.getHttpServer())
   .expect(201)
 ```
 
-## Extract config
+## Extra config
 
-- Setting port : change in '.env' file
+- Setting port : change in .env file
+
+- Use directy docker image with a docker-compose.yml :
+```yml
+version: '3.7'
+
+services:
+  ffmpeg-http-server:
+    container_name: ffmpeg-http-server
+    image: aifedespaix/ffmpeg-http-server
+    ports: 
+      - 8081
+```

@@ -3,8 +3,6 @@ version: '3.7'
 services:
   ffmpeg-http-server:
     container_name: ffmpeg-http-server
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: aifedespaix/ffmpeg-http-server
     ports:
       - ${PORT}

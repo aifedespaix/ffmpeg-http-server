@@ -10,4 +10,7 @@ RUN yarn install
 COPY . .
 
 RUN yarn build
+
+EXPOSE ${PORT}
+
 ENTRYPOINT yarn start:prod
