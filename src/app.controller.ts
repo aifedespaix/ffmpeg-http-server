@@ -1,4 +1,4 @@
-import {Body, Controller, Post, Res, UploadedFile, UseInterceptors} from '@nestjs/common';
+import {Body, Controller, Post, Query, Res, UploadedFile, UseInterceptors} from '@nestjs/common';
 import {AppService} from './app.service';
 import {FileInterceptor} from '@nestjs/platform-express';
 import {SliceDto} from './slice.dto';
@@ -18,6 +18,7 @@ export class AppController {
     @Body() slice: SliceDto,
     @Res() res,
   ) {
+    // console.log('file : ', file);
     const start = slice.start ? this.appService.sec2time(slice.start) : undefined;
     const duration = slice.duration ? this.appService.sec2time(slice.duration) : undefined;
     const path = await this.appService.optimiseFile(file.path, start, duration);

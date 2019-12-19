@@ -5,4 +5,4 @@ services:
     container_name: ffmpeg-http-server
     image: aifedespaix/ffmpeg-http-server
     ports:
-      - ${PORT}
+      - ${PORT}:${PORT}

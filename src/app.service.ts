@@ -4,9 +4,6 @@ import * as fs from 'fs';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
-  }
 
   sec2time(timeInSeconds: string) {
     const pad = (num, size) => ('000' + num).slice(size * -1);
@@ -23,15 +20,16 @@ export class AppService {
     return new Promise<string>((resolve, reject) => {
       const fromOption = from ? `-ss ${from}` : '';
       const durationOption = duration ? `-t ${duration}` : '';
-      const newFile = `${path}.mp3`;
-
-      const command = `ffmpeg -i ${path} -map 0:a:0 -b:a 96k ${fromOption} ${durationOption} ${newFile}`;
+      const newFilePath = `${path}.mp3`;
+      // console.log('path');
+      // console.log(path);
+      const command = `ffmpeg -i ${path} -map 0:a:0 -b:a 96k ${fromOption} ${durationOption} ${newFilePath}`;
       exec(command, (err, stdout, stderr) => {
         if (err) {
           reject(err);
         } else {
           fs.unlinkSync(path); // remove tmp file object
-          resolve(`${newFile}`);
+          resolve(newFilePath);
         }
       });
     });
