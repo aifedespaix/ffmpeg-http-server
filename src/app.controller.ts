@@ -1,4 +1,4 @@
-import {Body, Controller, Post, Query, Res, UploadedFile, UseInterceptors} from '@nestjs/common';
+import {Body, Controller, Get, Post, Res, UploadedFile, UseInterceptors} from '@nestjs/common';
 import {AppService} from './app.service';
 import {FileInterceptor} from '@nestjs/platform-express';
 import {SliceDto} from './slice.dto';
@@ -7,6 +7,11 @@ import {File} from './file';
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {
+  }
+
+  @Get()
+  main() {
+    return 'Call this route in post to optimize your file';
   }
 
   @Post()
