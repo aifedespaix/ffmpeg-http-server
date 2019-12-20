@@ -21,8 +21,6 @@ export class AppService {
       const fromOption = from ? `-ss ${from}` : '';
       const durationOption = duration ? `-t ${duration}` : '';
       const newFilePath = `${path}.mp3`;
-      // console.log('path');
-      // console.log(path);
       const command = `ffmpeg -i ${path} -map 0:a:0 -b:a 96k ${fromOption} ${durationOption} ${newFilePath}`;
       exec(command, (err, stdout, stderr) => {
         if (err) {

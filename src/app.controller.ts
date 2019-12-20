@@ -18,7 +18,6 @@ export class AppController {
     @Body() slice: SliceDto,
     @Res() res,
   ) {
-    // console.log('file : ', file);
     const start = slice.start ? this.appService.sec2time(slice.start) : undefined;
     const duration = slice.duration ? this.appService.sec2time(slice.duration) : undefined;
     const path = await this.appService.optimiseFile(file.path, start, duration);

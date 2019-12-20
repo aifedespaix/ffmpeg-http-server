@@ -8,17 +8,16 @@ docker pull aifedespaix/ffmpeg-http-server
 ```
 
 ## How to use it
-### 1 ) Fork Project
+### 1 ) Get Project
 ```bash
-$ git clone [...]
-$ cd [...]
+$ git clone https://github.com/aifedespaix/ffmpeg-http-server.git
+$ cd ffmpeg-http-server
 ```
 ### 2 ) Run server
 #### a) Via docker-compose
 ```bash
 $ docker-compose up -d
 ```
-
 #### b) Via nodejs
 ```bash
 $ yarn build
