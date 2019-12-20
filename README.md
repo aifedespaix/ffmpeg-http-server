@@ -33,14 +33,30 @@ $ yarn start:prod
     - start : string : starting time in second (optional)
     - duration : string : duration in second (optional)
  
-Exemple :
+Simple Exemple :
 ```js
-request(app.getHttpServer())
-  .post('/')
-  .attach('file', './test/audio/test.mp3')
-  .field( 'start', '1' )
-  .field( 'duration', '1.5' )
-  .expect(201)
+// Prepare the form reader
+const form = new FormData();
+form.append('file', fs.createReadStream(tmpPath));
+form.append('start', '1.233'); // Start at 1.233second
+form.append('duration', '5.25'); // Duration 5.25seconds
+
+const file = await new Promise<Buffer>((resolve, reject) => {
+  form.submit({
+    host: '0.0.0.0', // Call host
+    port: 8081,      // Width Port
+    method: 'post',  // In post
+    path: '/',       // To / route
+    headers: form.getHeaders(), // And set heards
+  }, (err, res) => {
+    if (err) {
+      reject(err);
+    }
+    res.on('data', (buffer) => {
+      resolve(buffer);
+    });
+  });
+});
 ```
 
 ## Extra config
